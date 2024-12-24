@@ -1,10 +1,10 @@
-import { Button } from '@/components/ui/button';
+import { ProductList } from '@/components/shared/product/product-list';
+import sampleData from '@/db/sample-data';
 
 const Homepage = () => {
   return (
     <>
-      Prostore
-      <Button variant="destructive">Test Btn</Button>
+      <ProductList data={sampleData.products} title="Newest Arrivals" limit={4} />
     </>
   );
 };
