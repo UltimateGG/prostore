@@ -1,4 +1,4 @@
-import { Product } from '@/types';
+import { Product } from '@/lib/types';
 import { ProductCard } from './product-card';
 
 export const ProductList = ({ data, title, limit }: { data: Product[]; title?: string; limit?: number }) => {
