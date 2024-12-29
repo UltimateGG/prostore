@@ -13,7 +13,10 @@ export async function getLatestProducts() {
 
 // Get product by slug
 export async function getProductBySlug(slug: string) {
-  return await prisma.product.findFirst({
+  console.time('db query');
+  const res = await prisma.product.findFirst({
     where: { slug: slug }
   });
+  console.timeEnd('db query');
+  return res;
 }

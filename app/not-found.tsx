@@ -12,9 +12,6 @@ const NotFoundPage = () => {
         <h1 className="text-3xl font-bold mb-4">Not Found</h1>
         <p className="text-destructive">Could not find requested page</p>
 
-        <p>{Date.now()}</p>
-        <TestDateThing />
-
         <Link href="/">
           <Button variant="outline" className="mt-4">
             Back To Home
@@ -23,12 +20,6 @@ const NotFoundPage = () => {
       </div>
     </div>
   );
-};
-
-const TestDateThing = () => {
-  'use client';
-
-  return <p>{Date.now()}</p>;
 };
 
 export default NotFoundPage;
