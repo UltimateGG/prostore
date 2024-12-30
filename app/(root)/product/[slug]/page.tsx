@@ -6,9 +6,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { getProductBySlug } from '@/lib/actions/product.actions';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 60;
-export const dynamic = 'force-static';
-
 const ProductDetailsPage = async (props: { params: Promise<{ slug: string }> }) => {
   const { slug } = await props.params;
   const product = await getProductBySlug(slug);
