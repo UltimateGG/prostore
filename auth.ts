@@ -42,7 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async session({ session, user, trigger, token }) {
       // Set user id from token
-      session.user.id = token.sub;
+      session.user.id = token.sub!;
 
       // If there is an update then update user name
       if (trigger === 'update') {
