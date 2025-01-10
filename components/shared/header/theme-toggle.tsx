@@ -1,25 +1,18 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoonIcon, SunIcon, SunMoonIcon } from 'lucide-react';
+import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 
 const ThemeToggle = () => {
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="focus-visible:ring-0 focus-visible:ring-offset-0">
-          {theme === 'system' ? <SunMoonIcon /> : theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+          <SunIcon className="scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         </Button>
       </DropdownMenuTrigger>
 

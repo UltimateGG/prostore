@@ -18,3 +18,8 @@ export const insertProductSchema = z.object({
 });
 
 export type Product = z.infer<typeof insertProductSchema> & { id: string; rating: string; createdAt: Date };
+
+export const signInFormSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters')
+});
