@@ -3,24 +3,24 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { signInWithCredentials } from '@/lib/actions/user.actions';
+import { signUpUser } from '@/lib/actions/user.actions';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 
-const SignInButton = () => {
+const SignUpButton = () => {
   const { pending } = useFormStatus();
 
   return (
     <Button disabled={pending} className="w-full">
-      {pending ? 'Signing In...' : 'Sign In'}
+      {pending ? 'Submitting...' : 'Sign Up'}
     </Button>
   );
 };
 
-export const CredentialsForm = () => {
-  const [data, action] = useActionState(signInWithCredentials, null);
+export const SignUpForm = () => {
+  const [data, action] = useActionState(signUpUser, null);
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
 
@@ -29,6 +29,13 @@ export const CredentialsForm = () => {
       <input type="hidden" name="callbackUrl" value={callbackUrl} />
 
       <div className="space-y-6">
+        <div>
+          <Label>
+            Name
+            <Input name="name" type="text" required autoComplete="name" />
+          </Label>
+        </div>
+
         <div>
           <Label>
             Email
@@ -43,14 +50,21 @@ export const CredentialsForm = () => {
           </Label>
         </div>
 
-        <SignInButton />
+        <div>
+          <Label>
+            Confirm Password
+            <Input name="confirmPassword" type="password" required autoComplete="password" />
+          </Label>
+        </div>
+
+        <SignUpButton />
 
         {data && !data.success && <div className="text-center text-destructive">{data.message}</div>}
 
         <div className="text-sm text-center text-muted-foreground">
-          Don&apos;t have an account?{' '}
-          <Link href="/sign-up" target="_self" className="link text-blue-500">
-            Sign Up
+          Already have an account?{' '}
+          <Link href="/sign-in" target="_self" className="link text-blue-500">
+            Sign In
           </Link>
         </div>
       </div>
